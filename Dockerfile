@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM python:3.9-alpine3.13
 LABEL maintainer="javireyes"
 
 ENV PYTHONUNBUFFERED 1
@@ -10,16 +10,6 @@ WORKDIR /app
 EXPOSE 8000
 
 ARG DEV=false
-
-RUN set -xe \
-    && apt update \
-    && apt -y install python3-pip
-RUN apt -y install curl 
-
-RUN curl -sL https://deb.nodesource.com/setup_14.x |bash -
-RUN apt install -y nodejs
-RUN npm install -g yarn
-
 
 RUN pip install --upgrade pip && \
     pip install -r /tmp/requirements.txt &&\
